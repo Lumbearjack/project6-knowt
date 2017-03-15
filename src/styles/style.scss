@@ -4,12 +4,3 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
-
-@font-face {
-    font-family: elephant;
-    src: url('./../assets/elephant.ttf');
-}
-
-h1, h2, h3 {
-	font-family: 'elephant', serif;
-} 
