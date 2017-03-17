@@ -4,3 +4,125 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 .clearfix:after {visibility: hidden; display: block; font-size: 0; content: " "; clear: both; height: 0; }
 
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+@font-face{
+	font-family: "elephant", serif;
+	src: url('../../assets/elephant.ttf');
+}
+$spaceMed: 1.5rem;
+
+h1,h2,h3,h4,h5,h6{
+	margin:0;
+}
+#app {
+}
+
+#wrapper{
+	display:flex;
+}
+#mainBlock{
+	width:100%;
+	padding:0 2rem;
+	border-right:1px solid #C4C4C4;
+	height:100vh;
+}
+#sideBlock{
+	display:flex;
+	width:700px;
+	padding:0 2rem;
+	height:100vh;
+	background-color: #eee;
+	p{
+		margin: auto;
+		color:#c4c4c4;
+	}
+}
+a, button{
+	transition: all 0.2s ease;
+}
+button{
+	height:2.5rem;
+	min-width:2.5rem;
+	border: 1px solid #424242;
+	border-radius: 4px;
+	outline:none;
+	background-color: #E9E9E9;
+	color: #424242;
+	&:hover{
+		border-color: lighten(grey, 10%);
+		color:lighten(grey, 10%);
+	}
+}
+header{
+	display:flex;
+	justify-content: space-between;
+	margin: $spaceMed 0;
+	align-items:center;
+	h1{
+		font-family: 'elephant';
+		font-size:3rem;
+		vertical-align: bottom;
+		a{
+
+
+			// line-height:0.8;
+			text-decoration: none;
+			color:#424242;
+
+			&:hover{
+				color: #898989;
+			}
+		}
+	}
+	button{
+		height:2.5rem;
+		min-width:2.5rem;
+		border: 1px solid #424242;
+		border-radius: 4px;
+		outline:none;
+		background-color: #E9E9E9;
+		color: #424242;
+		&:hover{
+			border-color: lighten(grey, 10%);
+			color:lighten(grey, 10%);
+		}
+	}
+}
+#newNote{
+	display:flex;
+	flex-direction:column;
+	padding:1rem;
+	border:1px solid #424242;
+	border-radius:4px;
+	input{
+		outline:none;
+		color: #424242;
+		padding:0.5rem 1rem 1rem 1rem;
+		border:none;
+		border-bottom:1px solid #c4c4c4;
+	}
+	textarea{
+		padding:1rem;
+		border:none;
+		outline:none;
+	}
+}
+#noteGrid{
+	border:1px solid black;
+}
+#noteItem{
+	border: 1px solid #424242;
+	border-radius: 4px;
+	box-shadow: 0 8px 8px rgba(0,0,0,.1);
+	width:100%;
+	padding:1rem;
+}
+#noteGridItem{
+	padding:1rem;
+	border:1px solid #424242;
+	border-radius:4px;
+	h3{
+		color: #424242;
+		padding:0.5rem;
+		border-bottom:1px solid #c4c4c4;
+	}
+}
