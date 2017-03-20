@@ -16,14 +16,21 @@ h1,h2,h3,h4,h5,h6{
 }
 #wrapper{
 	display:flex;
-	padding:3rem 2rem;
+	padding:2rem 2rem;
 	height:100vh;
 }
 #mainBlock{
+	display:flex;
+	flex-direction:column;
+	position:relative;
 	width:100%;
 	padding:0 2rem;
 	border-right:1px solid #C4C4C4;
 	height:100%;
+	section{
+		position:relative;
+		flex-grow:1;
+	}
 }
 #sideBlock{
 	display:flex;
@@ -74,24 +81,27 @@ button, input[type=submit]{
 		color:lighten(grey, 10%);
 	}
 }
+.knowtHeader{
+	text-decoration: none;
+	color:#424242;
+	font-family: 'elephant';
+	font-size:2rem;
+	vertical-align: bottom;
+	text-decoration: none;
+	color:#424242;
+	&:hover{
+		color: #898989;
+	}
+	h1{
+
+	}
+}
 header{
 	display:flex;
 	justify-content: space-between;
-	margin: $spaceMed 0;
+	margin:0 0 1rem 0;
 	align-items:center;
-	h1{
-		font-family: 'elephant';
-		font-size:3rem;
-		vertical-align: bottom;
-		a{
-			// line-height:0.8;
-			text-decoration: none;
-			color:#424242;
-			&:hover{
-				color: #898989;
-			}
-		}
-	}
+
 	button{
 		height:2.5rem;
 		min-width:2.5rem;
@@ -107,21 +117,35 @@ header{
 	}
 }
 #newNote{
+	position:absolute;
+	top:0;
+	bottom:2rem;
+	width:100%;
 	display:flex;
 	flex-direction:column;
 	padding:1rem;
 	border:1px solid #424242;
 	border-radius:4px;
-	margin-bottom:2rem;
 	input{
 		outline:none;
 		color: #424242;
 		padding:0.5rem 1rem 1rem 1rem;
 		border:none;
+		font-size:2rem;
 		border-bottom:1px solid #c4c4c4;
 	}
 	textarea{
-		padding:1rem;
+		resize: none;
+		font-size:1.2rem;
+		line-height:1.7;
+		padding:0 1rem;
+		border:none;
+		outline:none;
+		color:#898989;
+		width:100%;
+	}
+	input[type=submit]{
+		font-size:1.2rem;
 		border:none;
 		outline:none;
 	}
@@ -134,10 +158,16 @@ header{
 	padding:1rem;
 }
 #noteGrid{
+	position:absolute;
+	top:0;right:-1.25rem;left:0;
 	display:flex;
 	flex-wrap:wrap;
 	align-items:left;
+	height:100%;
 	margin: -1rem 0 0 -1rem;
+	padding-right:0.75rem;
+	overflow-y:scroll;
+	align-content:flex-start;
 	h2{
 		flex-basis:100%;
 		width:100%;
@@ -145,12 +175,16 @@ header{
 	}
 }
 .noteGridItem--container{
+	position:relative;
 	padding: 1rem 0 0 1rem;
 	display:block;
 	flex-basis:25%;
 	min-width:25%;
 }
 .noteActions{
+	display:flex;
+	flex-grow:1;
+	justify-content: center;
 	transition:all 0.3s ease;
 	visibility:hidden;
 	position:absolute;
@@ -161,24 +195,20 @@ header{
 	font-size:1rem;
 	font-weight:400;
 	border:none;
-	background:#;
-	height:50px;
+	background:#E9E9E9;
+	height:40px;
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
 	button{
-		visibility:hidden;
-		position:absolute;
-		top:0;
-		right: 0;
 		height:100%;
-		opacity:0;
 		font-size:1rem;
 		font-weight:400;
 		border:none;
+		background-color: transparent;
 	}
-
 }
-
 .noteGridItem{
-	transition: all 0.5s ease;
+	transition: all 0.2s ease;
 	position: relative;
 	display:flex;
 	flex-direction: column;
@@ -186,27 +216,97 @@ header{
 	border:1px solid #424242;
 	border-radius:4px;
 	width: 100%;	
-	height:280px;
+	height:230px;
 	box-shadow:0px 4px 8px rgba(0,0,0,0.2);
 	h3{
 		color: #424242;
 		padding:0.5rem;
 		border-bottom:1px solid #c4c4c4;
+		word-wrap: break-word;
+		max-height:3rem;
+		overflow-y:hidden;
 	}
 	p{
+		position:relative;
 		width:100%;
 		word-wrap: break-word;
 		margin:0;
-		padding:1rem 0.5rem;
+		padding:1rem 0.5rem 3rem 0.5rem;
+		overflow-y:hidden;
 	}
 	&:hover{
+		transform: scale(1.05);
 		.noteActions{
 			visibility: visible;
 			opacity:1;
-			display:block;
-			&:hover{
-				color:darkred;
-			}
 		}
 	}
+}
+.inputContainer{
+	// position:relative;
+	// height:500px;
+	height:100%;
+	margin-bottom:1rem;
+	padding:1rem 0;
+	border-bottom:1px solid #c4c4c4;
+	.pOverlayWrite{
+		height:100%;
+		// pointer-events:none;
+		// position:absolute;
+		// top:0;
+		// left:0;
+		// right:0;
+		// height:3rem;
+		background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.3),rgba(255,255,255,0));
+		textarea{
+			height:100%;
+		}
+	}
+}
+.pOverlay{
+	pointer-events:none;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	height:3rem;
+	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7),rgba(255,255,255,1));
+}
+.gridOverlayBottom{
+	pointer-events:none;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right:0;
+	height:3rem;
+	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7),rgba(255,255,255,1));
+}
+.gridOverlayTop{
+	pointer-events:none;
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	height:2rem;
+	background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.7),rgba(255,255,255,0));
+}
+#noteGrid::-webkit-scrollbar-track
+{
+	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: transparent;
+}
+
+#noteGrid::-webkit-scrollbar
+{
+	width: .5rem;
+	border-radius:500px;
+	background-color: #F5F5F5;
+}
+
+#noteGrid::-webkit-scrollbar-thumb
+{
+	border-radius: 100px;
+	background-color: #c4c4c4;
+	width:1rem;
+
 }

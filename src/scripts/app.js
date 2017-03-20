@@ -1,3 +1,10 @@
+/* To-Do:
+
+- Make notes in grid openable for reading and editing
+- Notes save in user-specific trees
+
+*/
+
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, Link } from 'react-router';
@@ -15,46 +22,13 @@ var config = {
 };
 firebase.initializeApp(config);
 
-// class NewNote extends React.Component{
-// 	constructor(){
-// 		super();
-// 		this.state = {
-
-// 		}
-// 	}
-// 	render(){
-// 		return(
-// 			<form id="newNote" onSubmit={this.addNote}>
-// 				<input name="newTitle" type="text" placeholder="Note Title" ref={ref => this.newTitle = ref} onChange={this.handleChange} autoComplete="off" required/>
-// 				<textarea name="newContent" ref={ref => this.newContent = ref} id="" cols="30" rows="5" placeholder="Write your note." onChange={this.handleChange} autoComplete="off"></textarea>
-// 				<input type="submit"/>
-// 			</form>
-// 		)
-// 	}
-// }
-
-function NoteGridItem(props){
-	return(
-		<div className="noteGridItem--container">
-			<div className="noteGridItem">
-				<h3>{props.data.title}</h3>
-				<p>{props.data.content}</p>
-				<div className="noteActions">
-					<button onClick={() => props.removeNote(props.data)} >X</button>
-				</div>
-				
-			</div>
-		</div>
-	)
-}
-
 class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 				notes: []
 		}
-		this.addNote = this.addNote.bind(this);
+
 		this.handleChange = this.handleChange.bind(this);
 	}
 	componentDidMount() {
@@ -84,17 +58,7 @@ class App extends React.Component {
 			[e.target.name]: e.target.value
 		});
 	}
-	addNote(e) {
-		e.preventDefault();
-		const noteItem = {
-			title: this.newTitle.value,
-			content: this.newContent.value
-		};
-		const dbRef = firebase.database().ref();
-		dbRef.push(noteItem);
-		this.newTitle.value="";
-		this.newContent.value="";
-	}
+	
 	removeNote(itemToRemove){
 		const dbRef = firebase.database().ref(itemToRemove.key);
 		dbRef.remove()
@@ -104,11 +68,11 @@ class App extends React.Component {
 			<div id="wrapper">
 				<main id="mainBlock">
 				<header>
-					<h1><a href="">knowt</a></h1>
+					<Link to={"/"} className="knowtHeader"> <h1 >knowt</h1> </Link>
 					<Link to={"/newnote"} ><button>+</button></Link>
 				</header>
 				<section>
-					{this.props.children}
+					{this.props.children || <NoteGrid notes={this.state.notes} removeNote={this.removeNote}/>}
 
 				</section>
 				</main>
@@ -121,9 +85,6 @@ class App extends React.Component {
 		)
 	}
 }
-// ReactDOM.render(<App />, document.getElementById('app'));
-
-
 ReactDOM.render(
 <Router history={browserHistory}>
 	<Route path="/" component={App}>
