@@ -6,31 +6,53 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 @font-face{
 	font-family: "elephant", serif;
-	src: url('../../assets/elephant.ttf');
+	src: url('/assets/elephant.ttf');
 }
 $spaceMed: 1.5rem;
-
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
 #app {
 }
-
 #wrapper{
 	display:flex;
+	padding:3rem 2rem;
+	height:100vh;
 }
 #mainBlock{
 	width:100%;
 	padding:0 2rem;
 	border-right:1px solid #C4C4C4;
-	height:100vh;
+	height:100%;
 }
 #sideBlock{
 	display:flex;
-	width:700px;
+	flex-direction:column;
+	width:430px;
 	padding:0 2rem;
-	height:100vh;
-	background-color: #eee;
+	height:100%;
+	// background-color: #eee;
+	form{
+		display:flex;
+		flex-direction:column;
+		input{
+			background-color: transparent;
+			border:1px solid #424242;
+			border-radius:4px;
+			padding:0.5rem 1rem;
+			outline:none;
+			margin-bottom:1rem;
+		}
+	}
+	nav{
+		ul{
+			display:flex;
+			li{
+				list-style: none;
+				margin-right:2rem;
+			}
+		}
+	}
 	p{
 		margin: auto;
 		color:#c4c4c4;
@@ -39,7 +61,7 @@ h1,h2,h3,h4,h5,h6{
 a, button{
 	transition: all 0.2s ease;
 }
-button{
+button, input[type=submit]{
 	height:2.5rem;
 	min-width:2.5rem;
 	border: 1px solid #424242;
@@ -62,12 +84,9 @@ header{
 		font-size:3rem;
 		vertical-align: bottom;
 		a{
-
-
 			// line-height:0.8;
 			text-decoration: none;
 			color:#424242;
-
 			&:hover{
 				color: #898989;
 			}
@@ -93,6 +112,7 @@ header{
 	padding:1rem;
 	border:1px solid #424242;
 	border-radius:4px;
+	margin-bottom:2rem;
 	input{
 		outline:none;
 		color: #424242;
@@ -106,9 +126,6 @@ header{
 		outline:none;
 	}
 }
-#noteGrid{
-	border:1px solid black;
-}
 #noteItem{
 	border: 1px solid #424242;
 	border-radius: 4px;
@@ -116,13 +133,80 @@ header{
 	width:100%;
 	padding:1rem;
 }
-#noteGridItem{
+#noteGrid{
+	display:flex;
+	flex-wrap:wrap;
+	align-items:left;
+	margin: -1rem 0 0 -1rem;
+	h2{
+		flex-basis:100%;
+		width:100%;
+		margin-bottom: 0.5rem;
+	}
+}
+.noteGridItem--container{
+	padding: 1rem 0 0 1rem;
+	display:block;
+	flex-basis:25%;
+	min-width:25%;
+}
+.noteActions{
+	transition:all 0.3s ease;
+	visibility:hidden;
+	position:absolute;
+	bottom:0;
+	left:0;
+	right: 0;
+	opacity:0;
+	font-size:1rem;
+	font-weight:400;
+	border:none;
+	background:#;
+	height:50px;
+	button{
+		visibility:hidden;
+		position:absolute;
+		top:0;
+		right: 0;
+		height:100%;
+		opacity:0;
+		font-size:1rem;
+		font-weight:400;
+		border:none;
+	}
+
+}
+
+.noteGridItem{
+	transition: all 0.5s ease;
+	position: relative;
+	display:flex;
+	flex-direction: column;
 	padding:1rem;
 	border:1px solid #424242;
 	border-radius:4px;
+	width: 100%;	
+	height:280px;
+	box-shadow:0px 4px 8px rgba(0,0,0,0.2);
 	h3{
 		color: #424242;
 		padding:0.5rem;
 		border-bottom:1px solid #c4c4c4;
+	}
+	p{
+		width:100%;
+		word-wrap: break-word;
+		margin:0;
+		padding:1rem 0.5rem;
+	}
+	&:hover{
+		.noteActions{
+			visibility: visible;
+			opacity:1;
+			display:block;
+			&:hover{
+				color:darkred;
+			}
+		}
 	}
 }
