@@ -31,13 +31,10 @@ export default class Header extends React.Component {
 	signup(e) {
 		e.preventDefault();
 		if (this.state.password === this.state.confirm){
-			console.log('signing up');
-			console.log(this.state.email, this.state.password, this.state.confirm)
 			firebase.auth()
 				.createUserWithEmailAndPassword(this.state.email, this.state.password)
 				.then((userData) => {
 					// if(userData.code ===)
-					console.log(userData);
 				})
 		}else{
 			alert('passwords dont match');
@@ -48,7 +45,7 @@ export default class Header extends React.Component {
 		firebase.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
 		.then((userData) => {
-			console.log(userData);
+			// console.log(userData);
 		});
 	}
 	logout(e){
@@ -106,6 +103,7 @@ export default class Header extends React.Component {
 			<div>
 				<nav>
 					<ul>
+
 						<li><a href="" className="signup" onClick={this.formToShow}>Sign Up</a></li>
 						<li><a href="" className="login" onClick={this.formToShow}>Log In</a></li>
 					</ul>

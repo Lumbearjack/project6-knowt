@@ -24,7 +24,7 @@ h1,h2,h3,h4,h5,h6{
 	flex-direction:column;
 	position:relative;
 	width:100%;
-	padding:0 2rem;
+	padding:0 3.5rem 0 2rem ;
 	border-right:1px solid #C4C4C4;
 	height:100%;
 	section{
@@ -159,13 +159,13 @@ header{
 }
 #noteGrid{
 	position:absolute;
-	top:0;right:-1.25rem;left:0;
+	top:0;right:-2rem;left:0;
 	display:flex;
 	flex-wrap:wrap;
 	align-items:left;
 	height:100%;
 	margin: -1rem 0 0 -1rem;
-	padding-right:0.75rem;
+	padding-right:1rem;
 	overflow-y:scroll;
 	align-content:flex-start;
 	h2{
@@ -188,19 +188,17 @@ header{
 	transition:all 0.3s ease;
 	visibility:hidden;
 	position:absolute;
-	bottom:0;
-	left:0;
-	right: 0;
+	bottom:0;left:0;right: 0;
 	opacity:0;
 	font-size:1rem;
 	font-weight:400;
 	border:none;
 	background:#E9E9E9;
-	height:40px;
+	padding:0.5rem;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	button{
-		height:100%;
+		margin-right:0.5rem;
 		font-size:1rem;
 		font-weight:400;
 		border:none;
@@ -208,6 +206,7 @@ header{
 	}
 }
 .noteGridItem{
+	cursor:pointer;
 	transition: all 0.2s ease;
 	position: relative;
 	display:flex;
@@ -218,6 +217,7 @@ header{
 	width: 100%;	
 	height:230px;
 	box-shadow:0px 4px 8px rgba(0,0,0,0.2);
+	background:#fff;
 	h3{
 		color: #424242;
 		padding:0.5rem;
@@ -225,6 +225,7 @@ header{
 		word-wrap: break-word;
 		max-height:3rem;
 		overflow-y:hidden;
+		vertical-align: bottom;
 	}
 	p{
 		position:relative;
@@ -234,13 +235,16 @@ header{
 		padding:1rem 0.5rem 3rem 0.5rem;
 		overflow-y:hidden;
 	}
-	&:hover{
+	&:hover, &:focus{
 		transform: scale(1.05);
 		.noteActions{
 			visibility: visible;
 			opacity:1;
 		}
 	}
+}
+.noteGridItem--container:last-child{
+	padding-bottom:1rem;
 }
 .inputContainer{
 	// position:relative;
@@ -309,4 +313,17 @@ header{
 	background-color: #c4c4c4;
 	width:1rem;
 
+}
+.actionRemoveNote:hover {
+	background:pink;
+	i{
+		color:red;
+	}
+}
+
+.actionEditNote:hover {
+	background:lightgreen;
+	i{
+		color:green;
+	}
 }

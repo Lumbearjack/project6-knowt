@@ -26,17 +26,16 @@ class App extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-				notes: []
+				notes: [],
+				loggedin:false
 		}
-
 		this.handleChange = this.handleChange.bind(this);
 	}
 	componentDidMount() {
-		console.log('mounting');
 		const dbRef = firebase.database().ref();
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user){
-				console.log(user);
+				// console.log(user);
 				dbRef.on("value", (data) => {
 					const dataBaseData = data.val();
 					const itemArray = [];
@@ -45,7 +44,7 @@ class App extends React.Component {
 						noteKey.key = itemKey;
 						itemArray.push(noteKey);
 					}
-						console.log(itemArray);
+						// console.log(itemArray);
 						this.setState({
 							notes: itemArray
 					})
@@ -63,22 +62,27 @@ class App extends React.Component {
 		const dbRef = firebase.database().ref(itemToRemove.key);
 		dbRef.remove()
 	}
+	editNote(note){
+		console.log(note);
+		let editTitle = note.title;
+		let editContent = note.content;
+		let editKey = note.key;
+		console.log(editKey, ":",editTitle, editContent);
+	}
 	render(){
 		return (
 			<div id="wrapper">
 				<main id="mainBlock">
 				<header>
 					<Link to={"/"} className="knowtHeader"> <h1 >knowt</h1> </Link>
-					<Link to={"/newnote"} ><button>+</button></Link>
+					<Link to={"/newnote"} ><button>New Note</button></Link>
 				</header>
 				<section>
-					{this.props.children || <NoteGrid notes={this.state.notes} removeNote={this.removeNote}/>}
-
+					{this.props.children || <NoteGrid notes={this.state.notes} removeNote={this.removeNote} editNote={this.editNote}/>}
 				</section>
 				</main>
 				<aside id="sideBlock">
-					<Header />
-
+					<Header loginState={this.state.loggedin}/>
 					<p>add stuff here</p>
 				</aside>
 			</div>
