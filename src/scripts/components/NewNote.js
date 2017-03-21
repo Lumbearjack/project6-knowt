@@ -16,7 +16,8 @@ class NewNote extends React.Component{
 			title: this.newTitle.value,
 			content: this.newContent.value
 		};
-		const dbRef = firebase.database().ref();
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref(`users/${userId}/notes`);
 		dbRef.push(noteItem);
 		this.newTitle.value="";
 		this.newContent.value="";

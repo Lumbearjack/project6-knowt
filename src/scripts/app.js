@@ -1,16 +1,17 @@
 /* To-Do:
 
-- Make notes in grid openable for reading and editing
 - Notes save in user-specific trees
+- log in error codes
 
 */
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, Link } from 'react-router';
-import Header from './components/Header';
+import Login from './components/Login';
 import NoteGrid from './components/NoteGrid';
 import NewNote from './components/NewNote';
+import EditNote from './components/EditNote';
 
 // Initialize Firebase
 var config = {
@@ -30,12 +31,15 @@ class App extends React.Component {
 				loggedin:false
 		}
 		this.handleChange = this.handleChange.bind(this);
+		this.editNote = this.editNote.bind(this);
+		this.removeNote = this.removeNote.bind(this);
+		this.handleChange = this.handleChange.bind(this);
 	}
 	componentDidMount() {
-		const dbRef = firebase.database().ref();
+		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user){
-				// console.log(user);
+				const dbRef = firebase.database().ref(`users/${user.uid}/notes`);
 				dbRef.on("value", (data) => {
 					const dataBaseData = data.val();
 					const itemArray = [];
@@ -44,11 +48,17 @@ class App extends React.Component {
 						noteKey.key = itemKey;
 						itemArray.push(noteKey);
 					}
-						// console.log(itemArray);
 						this.setState({
-							notes: itemArray
+							notes: itemArray,
+							loggedin: true
 					})
 				});
+			}
+			else{
+				this.setState({
+					notes: [],
+					loggedin: false
+				})
 			}
 		})
 	}
@@ -57,17 +67,24 @@ class App extends React.Component {
 			[e.target.name]: e.target.value
 		});
 	}
-	
 	removeNote(itemToRemove){
-		const dbRef = firebase.database().ref(itemToRemove.key);
-		dbRef.remove()
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref(`users/${userId}/notes/${itemToRemove.key}`)
+		dbRef.remove();
+		this.props.router.push(`/`);
 	}
 	editNote(note){
-		console.log(note);
+		const userId = firebase.auth().currentUser.uid;
+		const dbRef = firebase.database().ref(`users/${userId}/notes/${note.key}`)
+		// const dbRef = firebase.database().ref(note.key);
 		let editTitle = note.title;
 		let editContent = note.content;
 		let editKey = note.key;
-		console.log(editKey, ":",editTitle, editContent);
+		const editedItem = {
+			title: note.title,
+			content: note.content
+		};
+		this.props.router.push(`/${editKey}`);
 	}
 	render(){
 		return (
@@ -82,7 +99,7 @@ class App extends React.Component {
 				</section>
 				</main>
 				<aside id="sideBlock">
-					<Header loginState={this.state.loggedin}/>
+					<Login loginState={this.state.loggedin}/>
 					<p>add stuff here</p>
 				</aside>
 			</div>
@@ -93,5 +110,6 @@ ReactDOM.render(
 <Router history={browserHistory}>
 	<Route path="/" component={App}>
 		<Route path="/newnote" component={NewNote} />
+		<Route path="/:editKey" component={EditNote}/>
 	</Route>
 </Router>, document.getElementById('app'));

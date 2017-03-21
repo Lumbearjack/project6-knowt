@@ -1,12 +1,11 @@
 import React from 'react';
 
-
-
-export default class Header extends React.Component {
+export default class Login extends React.Component {
 	constructor() {
 		super();
 		this.state = {
 			formToShow: '',
+			showSignInUp: '',
 			email: '',
 			password: '',
 			confirm: ''
@@ -16,6 +15,9 @@ export default class Header extends React.Component {
 		this.signup = this.signup.bind(this);
 		this.login = this.login.bind(this);
 		this.logout = this.logout.bind(this);
+	}
+	componentDidMount(){
+		console.log(this.props.loginState);
 	}
 	formToShow(e) {
 		e.preventDefault();
@@ -34,7 +36,13 @@ export default class Header extends React.Component {
 			firebase.auth()
 				.createUserWithEmailAndPassword(this.state.email, this.state.password)
 				.then((userData) => {
-					// if(userData.code ===)
+					console.log('user');
+					alert(userData);
+					// if(userData.code ===){
+
+					// }
+				}).catch((err) => {
+					alert(err.message);
 				})
 		}else{
 			alert('passwords dont match');
@@ -45,16 +53,36 @@ export default class Header extends React.Component {
 		firebase.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
 		.then((userData) => {
-			// console.log(userData);
+			// this.props.loginState = true;
+			alert(userData);
+		}).catch((err) => {
+			alert(err.message);
 		});
+		console.log(this.props.loginState)
 	}
 	logout(e){
 		e.preventDefault();
+		// this.props.loginState = false;
 		firebase.auth().signOut();
 	}
 	render() {
 		let loginForm = '';
+		let loginOptions = '';
 		let user = firebase.auth().currentUser;
+		if (user){
+			loginOptions = (
+				<p>log out</p>
+			);
+		}else{
+			loginOptions = (
+				<nav>
+					<ul>
+						<li><a href="" className="signup" onClick={this.formToShow}>Sign Up</a></li>
+						<li><a href="" className="login" onClick={this.formToShow}>Log In</a></li>
+					</ul>
+				</nav>
+			);
+		}
 		if (user){
 			this.state.formToShow = "logout";
 			if(this.state.formToShow === "logout") {
@@ -101,13 +129,7 @@ export default class Header extends React.Component {
 		}
 		return (
 			<div>
-				<nav>
-					<ul>
-
-						<li><a href="" className="signup" onClick={this.formToShow}>Sign Up</a></li>
-						<li><a href="" className="login" onClick={this.formToShow}>Log In</a></li>
-					</ul>
-				</nav>
+				{loginOptions}
 				{loginForm}
 			</div>
 		)
