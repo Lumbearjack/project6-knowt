@@ -380,13 +380,16 @@ header{
 /* Landscape phone to portrait tablet */
 @media (max-width: 780px) {
 	#wrapper{
-		padding:2rem 0;
+		padding:0.5rem 0;
 	}
 	.AddNoteLink, .noteGridItem--container{
 		flex-basis:50%;
 		min-width:50%;
 	}
+	#noteGrid{
+		right:-2rem;
 
+	}
 	#mainBlock #loginNav {
 		width:100%;
 		button{
@@ -396,6 +399,7 @@ header{
 	}
 	#NewNote{
 		margin-bottom:1rem;
+		padding-right: 1.5rem;
 	}
 	#loginNav{
 		order:3;

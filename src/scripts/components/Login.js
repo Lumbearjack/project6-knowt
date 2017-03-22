@@ -87,10 +87,12 @@ export default class Login extends React.Component {
 			);
 		}
 		else{
+
+			//Revisiting this 
 			loginOptions = (
 				<nav id="loginNav">
 					<button className="signup" onClick={this.formToShow}>Sign Up</button>
-					<button className="login" onClick={this.formToShow}>Log In</button>
+					{/*<button className="login" onClick={this.formToShow}>Log In</button>*/}
 				</nav>
 			);
 		}
@@ -113,6 +115,16 @@ export default class Login extends React.Component {
 				);
 			}
 			else if(this.state.formToShow === "login") {
+				loginForm = (
+					<form onSubmit={this.login} className="user-form">
+						<label htmlFor="email">Email: </label>
+						<input type="email" name="email" placeholder="example@email.com"onChange={this.handleChange} autoFocus/>
+						<label htmlFor="password">Password: </label>
+						<input type="password" name="password" placeholder="password" onChange={this.handleChange}/>
+						<button className="loginButton">Log In</button>
+					</form>
+				);
+			}else{
 				loginForm = (
 					<form onSubmit={this.login} className="user-form">
 						<label htmlFor="email">Email: </label>
