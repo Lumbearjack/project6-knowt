@@ -143,7 +143,7 @@ header{
 		padding:0 1rem;
 		border:none;
 		outline:none;
-		color:$monoMid;
+		color:$monoDarker;
 		width:100%;
 		overflow:scroll;
 	}
@@ -232,6 +232,9 @@ header{
 		position: relative;
 		display:flex;
 		flex-direction: column;
+		p{
+			white-space: pre-wrap;
+		}
 	}
 	h3{
 		color: $monoDarker;
