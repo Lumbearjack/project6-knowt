@@ -9,7 +9,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 	src: url('/assets/elephant.ttf');
 }
 
-
+/* Edit/ Add notes only messes up when window width is not forcing width change on textarea*/
 
 	$monoDarkest: #0E0E0E;
 	$monoDarker: #424242;
@@ -37,6 +37,7 @@ h1,h2,h3,h4,h5,h6{
 	height:100vh;
 }
 #mainBlock{
+	// min-height:100vh;
 	display:flex;
 	flex-direction:column;
 	position:relative;
@@ -93,18 +94,6 @@ h1,h2,h3,h4,h5,h6{
 a, button{
 	transition: all 0.2s ease;
 }
-// button, input[type=submit]{
-// 	min-width:2.5rem;
-// 	border: 1px solid $monoDarker;
-// 	border-radius: 4px;
-// 	outline:none;
-// 	background-color: $monoLightest;
-// 	color: $monoDarker;
-// 	&:hover{
-// 		border-color: lighten(grey, 10%);
-// 		color:lighten(grey, 10%);
-// 	}
-// }
 .knowtHeader{
 	text-decoration: none;
 	color:$monoDarker;
@@ -128,6 +117,7 @@ header{
 	align-items:center;
 }
 #newNote{
+	min-height:300px;
 	position:absolute;
 	top:0;
 	bottom:2rem;
@@ -145,7 +135,8 @@ header{
 		font-size:2rem;
 		border-bottom:1px solid$monoLighter;
 	}
-	textarea{
+	#contentText{
+		height:100%;
 		resize: none;
 		font-size:1.2rem;
 		line-height:1.7;
@@ -154,7 +145,7 @@ header{
 		outline:none;
 		color:$monoMid;
 		width:100%;
-		margin-bottom:-2rem;
+		overflow:scroll;
 	}
 	input[type=submit]{
 		font-size:1.2rem;
@@ -271,19 +262,11 @@ header{
 	padding-bottom:1rem;
 }
 .inputContainer{
-
+	// position:relative;
 	height:100%;
-	margin-bottom:1rem;
-	padding:1rem 0;
-	border-bottom:1px solid$monoLighter;
-
-}
-.pOverlayWrite{
-	height:100%;
-	background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.3),rgba(255,255,255,0));
-	textarea{
-		height:100%;
-	}
+	// margin-bottom:1rem;
+	// padding:1rem 0;
+	border-bottom:1px solid $monoLighter;
 }
 .pOverlay{
 	pointer-events:none;
@@ -293,24 +276,6 @@ header{
 	right:0;
 	height:3rem;
 	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7),rgba(255,255,255,1));
-}
-.gridOverlayBottom{
-	pointer-events:none;
-	position:absolute;
-	bottom:0;
-	left:0;
-	right:0;
-	height:3rem;
-	background: linear-gradient(rgba(255,255,255,0),rgba(255,255,255,0.7),rgba(255,255,255,1));
-}
-.gridOverlayTop{
-	pointer-events:none;
-	position:absolute;
-	top:0;
-	left:0;
-	right:0;
-	height:2rem;
-	background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.7),rgba(255,255,255,0));
 }
 .AddNoteLink{
 	flex-basis:25%;
@@ -398,6 +363,9 @@ header{
 
 	}
 }
+#loginContainer #loginNav #logoutBtn{
+	margin-right:0;
+}
 /* Portrait tablet and small desktops */
 @media (max-width: 1200px) {
 	.AddNoteLink, .noteGridItem--container{
@@ -426,7 +394,9 @@ header{
 			margin:1.5rem 0;
 		}
 	}
-
+	#NewNote{
+		margin-bottom:1rem;
+	}
 	#loginNav{
 		order:3;
 	}

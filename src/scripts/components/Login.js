@@ -70,7 +70,7 @@ export default class Login extends React.Component {
 		if (user){
 			loginOptions = (
 				<nav id="loginNav">
-					<button className="logout" onClick={this.logout}>Log Out</button>
+					<button id="logoutBtn" className="logout" onClick={this.logout}>Log Out</button>
 				</nav>
 			);
 		}else if(this.state.formToShow === 'signup') {

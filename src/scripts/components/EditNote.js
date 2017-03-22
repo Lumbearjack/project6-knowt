@@ -27,6 +27,7 @@ class EditNote extends React.Component{
 			//Not sure if I'm going to revert to this feature
 			// let textarea = document.getElementById('contentText');
 			// textarea.scrollTop = textarea.scrollHeight;
+			this.setState();
 	}
 	
 	updateNote(e) {
@@ -48,11 +49,7 @@ class EditNote extends React.Component{
 		return(
 			<form id="newNote" onSubmit={this.updateNote} className="animated fadeIn">
 				<input name="editTitle" type="text" placeholder="Note Title" ref={ref => this.editTitle = ref} onChange={this.handleChange} autoComplete="off" value={this.state.editTitle} required />
-				<div className="inputContainer">
-					<div className="pOverlayWrite">
-						<textarea name="editContent" ref={ref => this.editContent = ref} id="contentText"  placeholder="Write your note." onChange={this.handleChange} value={this.state.editContent} autoComplete="off" autoFocus></textarea>
-					</div>
-				</div>
+				<textarea name="editContent" ref={ref => this.editContent = ref} id="contentText"  placeholder="Write your note." onChange={this.handleChange} value={this.state.editContent} autoComplete="off" autoFocus></textarea>
 				<input type="submit" value="Save"/>
 			</form>
 		)

@@ -28,7 +28,7 @@ function NoteGridItem(props){
 					<button className="actionEditNote" onClick={() => props.editNote(props.data)} ><i className="fa fa-pencil" aria-hidden="true"></i></button>
 					<button className="actionRemoveNote" onClick={() => props.removeNote(props.data)} ><i className="fa fa-trash" aria-hidden="true"></i></button>
 				</div>
-				<div className="contentWrapper" onClick={() => props.editNote(props.data)}>
+				<div className="contentWrapper">
 					<h3>{props.data.title}</h3>
 					<p><span className="pOverlay"></span>{props.data.content}</p>
 				</div>
