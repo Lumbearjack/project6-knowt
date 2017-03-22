@@ -25,11 +25,30 @@ h1,h2,h3,h4,h5,h6{
 	position:relative;
 	width:100%;
 	padding:0 3.5rem 0 2rem ;
-	border-right:1px solid #C4C4C4;
+	max-width: 1400px;
+	margin:0 auto;
+	// border-right:1px solid #C4C4C4;
 	height:100%;
+	header{
+		flex-wrap:wrap;
+	}
 	section{
 		position:relative;
 		flex-grow:1;
+	}
+	#loginNav{
+		display:flex;
+		flex-direction:row;
+		ul{
+			margin:auto;
+			padding:0;
+			display:flex;
+			flex-direction:row;
+			list-style: none;
+			li{
+				margin-right:2rem;
+			}
+		}
 	}
 }
 #sideBlock{
@@ -38,7 +57,6 @@ h1,h2,h3,h4,h5,h6{
 	width:430px;
 	padding:0 2rem;
 	height:100%;
-	// background-color: #eee;
 	form{
 		display:flex;
 		flex-direction:column;
@@ -89,11 +107,11 @@ button, input[type=submit]{
 	vertical-align: bottom;
 	text-decoration: none;
 	color:#424242;
-	&:hover{
+	&:hover, &:focus{
+		outline:none;
 		color: #898989;
 	}
 	h1{
-
 	}
 }
 header{
@@ -101,7 +119,6 @@ header{
 	justify-content: space-between;
 	margin:0 0 1rem 0;
 	align-items:center;
-
 	button{
 		height:2.5rem;
 		min-width:2.5rem;
@@ -181,7 +198,6 @@ header{
 	display:block;
 	flex-basis:25%;
 	min-width:25%;
-
 }
 .noteActions{
 	z-index:11;
@@ -256,20 +272,13 @@ header{
 	padding-bottom:1rem;
 }
 .inputContainer{
-	// position:relative;
-	// height:500px;
+
 	height:100%;
 	margin-bottom:1rem;
 	padding:1rem 0;
 	border-bottom:1px solid #c4c4c4;
 	.pOverlayWrite{
 		height:100%;
-		// pointer-events:none;
-		// position:absolute;
-		// top:0;
-		// left:0;
-		// right:0;
-		// height:3rem;
 		background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.3),rgba(255,255,255,0));
 		textarea{
 			height:100%;
@@ -303,9 +312,30 @@ header{
 	height:2rem;
 	background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.7),rgba(255,255,255,0));
 }
+.AddNoteLink{
+	flex-basis:25%;
+	width:25%;
+	color:transparent;
+	
+	.addNoteCard--Item{
+		background:#e9e9e9;
+		.addNoteCard--Container{
+			height:100%;
+		}
+		.addNoteCard--inner{
+
+			display:flex;
+			height:100%;
+			i{
+				font-size:5rem;
+				color:#c4c4c4;
+				margin:auto auto;
+			}
+		}
+	}
+}
 *::-webkit-scrollbar-track
 {
-	// -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	background-color: transparent;
 }
 
@@ -313,15 +343,12 @@ header{
 {
 	width: .5rem;
 	border-radius:500px;
-	background-color: #F5F5F5;
 }
-
 *::-webkit-scrollbar-thumb
 {
 	border-radius: 100px;
 	background-color: #c4c4c4;
 	width:1rem;
-
 }
 .actionRemoveNote:hover {
 	background:pink;
@@ -329,11 +356,42 @@ header{
 		color:red;
 	}
 }
-
 .actionEditNote:hover {
 	background:lightgreen;
 	i{
 		color:green;
+	}
+}
+#loginContainer{
+	display:flex;
+	flex-direction:row;
+	flex-wrap:wrap;
+	.user-form{
+		label{
+			display:none;
+		}
+		input,.loginButton{
+			height:2.5rem;
+			margin:0.5rem 0.5rem 0 0;
+			padding: 0.5rem 1rem;
+			border:none;
+			background:#e9e9e9;
+			border-bottom: 1px solid #c4c4c4;
+			border-radius:4px;
+			&:focus{
+				outline: none;
+				border-bottom: 1px solid #898989;
+			}
+		}
+		.loginButton{
+			border: 1px solid #424242;
+			&:hover, &:focus{
+				background:#c4c4c4;
+				outline: none;
+				border: 1px solid #424242;
+				color: #424242;
+			}
+		}
 	}
 }
 /* Portrait tablet and small desktops */
@@ -343,7 +401,6 @@ header{
 		min-width:33%;
 	}
 }
-
 /* Portrait tablet and small desktops */
 @media (max-width: 1080px) {
 	.noteGridItem--container{
@@ -351,11 +408,13 @@ header{
 		min-width:50%;
 	}
 }
-
 /* Landscape phone to portrait tablet */
 @media (max-width: 768px) {
 }
-
 /* Landscape phones and down */
 @media (max-width: 480px) {
+	.noteGridItem--container{
+		flex-basis:100%;
+		min-width:100%;
+	}
 }

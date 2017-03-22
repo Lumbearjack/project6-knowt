@@ -30,8 +30,8 @@ class NewNote extends React.Component{
 	}
 	render(){
 		return(
-			<form id="newNote" onSubmit={this.addNote}>
-				<input name="newTitle" type="text" placeholder="Note Title" ref={ref => this.newTitle = ref} onChange={this.handleChange} autoComplete="off" required autoFocus/>
+			<form id="newNote" onSubmit={this.addNote} className="animated fadeIn">
+				<input name="newTitle" type="text" placeholder="Note Title" ref={ref => this.newTitle = ref} onChange={this.handleChange} autoComplete="off"  autoFocus/>
 				<div className="inputContainer">
 					<div className="pOverlayWrite">
 						<textarea name="newContent" ref={ref => this.newContent = ref} id=""  placeholder="Write your note." onChange={this.handleChange} autoComplete="off"></textarea>

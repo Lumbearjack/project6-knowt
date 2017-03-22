@@ -1,6 +1,6 @@
 /* To-Do:
 
-- Notes save in user-specific trees
+- Responsive design
 - log in error codes
 
 */
@@ -36,7 +36,6 @@ class App extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 	}
 	componentDidMount() {
-		
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user){
 				const dbRef = firebase.database().ref(`users/${user.uid}/notes`);
@@ -76,7 +75,6 @@ class App extends React.Component {
 	editNote(note){
 		const userId = firebase.auth().currentUser.uid;
 		const dbRef = firebase.database().ref(`users/${userId}/notes/${note.key}`)
-		// const dbRef = firebase.database().ref(note.key);
 		let editTitle = note.title;
 		let editContent = note.content;
 		let editKey = note.key;
@@ -92,16 +90,15 @@ class App extends React.Component {
 				<main id="mainBlock">
 				<header>
 					<Link to={"/"} className="knowtHeader"> <h1 >knowt</h1> </Link>
-					<Link to={"/newnote"} ><button>New Note</button></Link>
+					<Login loginState={this.state.loggedin}/>
 				</header>
 				<section>
 					{this.props.children || <NoteGrid notes={this.state.notes} removeNote={this.removeNote} editNote={this.editNote}/>}
 				</section>
 				</main>
-				<aside id="sideBlock">
-					<Login loginState={this.state.loggedin}/>
+				{/*<aside id="sideBlock">
 					<p>add stuff here</p>
-				</aside>
+				</aside>*/}
 			</div>
 		)
 	}

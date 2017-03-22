@@ -1,9 +1,23 @@
 import React from 'react';
+import { Router, Route, browserHistory, Link } from 'react-router';
 
+function AddNoteCard(props){
+	return(
+		<div className="noteGridItem--container addNoteCard--Wrapper">
+			<div className="noteGridItem animated fadeIn addNoteCard--Item" >
+				<div className="contentWrapper addNoteCard--Container">
+					<div className="addNoteCard--inner">
+						<i className="fa fa-plus" aria-hidden="true"></i>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
+}
 function NoteGridItem(props){
 	return(
 		<div className="noteGridItem--container">
-			<div className="noteGridItem" >
+			<div className="noteGridItem animated fadeIn" >
 				<div className="noteActions">
 					<button className="actionEditNote" onClick={() => props.editNote(props.data)} ><i className="fa fa-pencil" aria-hidden="true"></i></button>
 					<button className="actionRemoveNote" onClick={() => props.removeNote(props.data)} ><i className="fa fa-trash" aria-hidden="true"></i></button>
@@ -29,7 +43,9 @@ export default class NoteGrid extends React.Component{
 				{this.props.notes.map((note, i) => {
 					return <NoteGridItem tabIndex={i} data={note} removeNote={this.props.removeNote} editNote={this.props.editNote} key={note.key}/>
 				})}
-				{/* new note card */}
+				<Link className="AddNoteLink" to="/newnote" > 
+					<AddNoteCard key="AddNoteCardKey" />
+				</Link>
 			</div>
 		)
 	}
