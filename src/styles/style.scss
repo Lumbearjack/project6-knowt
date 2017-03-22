@@ -8,10 +8,27 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 	font-family: "elephant", serif;
 	src: url('/assets/elephant.ttf');
 }
+
+
+
+	$monoDarkest: #0E0E0E;
+	$monoDarker: #424242;
+	$monoMid: #898989;
+	$monoLighter: #C4C4C4;
+	$monoLightest: #E9E9E9;
+.themeLight{
+
+}
+
+.themeDark{
+
+}
+
 $spaceMed: 1.5rem;
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
+
 #app {
 }
 #wrapper{
@@ -27,7 +44,7 @@ h1,h2,h3,h4,h5,h6{
 	padding:0 3.5rem 0 2rem ;
 	max-width: 1400px;
 	margin:0 auto;
-	// border-right:1px solid #C4C4C4;
+	// border-right:1px solid$monoLighter;
 	height:100%;
 	header{
 		flex-wrap:wrap;
@@ -39,16 +56,6 @@ h1,h2,h3,h4,h5,h6{
 	#loginNav{
 		display:flex;
 		flex-direction:row;
-		ul{
-			margin:auto;
-			padding:0;
-			display:flex;
-			flex-direction:row;
-			list-style: none;
-			li{
-				margin-right:2rem;
-			}
-		}
 	}
 }
 #sideBlock{
@@ -62,7 +69,7 @@ h1,h2,h3,h4,h5,h6{
 		flex-direction:column;
 		input{
 			background-color: transparent;
-			border:1px solid #424242;
+			border:1px solid $monoDarker;
 			border-radius:4px;
 			padding:0.5rem 1rem;
 			outline:none;
@@ -86,30 +93,30 @@ h1,h2,h3,h4,h5,h6{
 a, button{
 	transition: all 0.2s ease;
 }
-button, input[type=submit]{
-	height:2.5rem;
-	min-width:2.5rem;
-	border: 1px solid #424242;
-	border-radius: 4px;
-	outline:none;
-	background-color: #E9E9E9;
-	color: #424242;
-	&:hover{
-		border-color: lighten(grey, 10%);
-		color:lighten(grey, 10%);
-	}
-}
+// button, input[type=submit]{
+// 	min-width:2.5rem;
+// 	border: 1px solid $monoDarker;
+// 	border-radius: 4px;
+// 	outline:none;
+// 	background-color: $monoLightest;
+// 	color: $monoDarker;
+// 	&:hover{
+// 		border-color: lighten(grey, 10%);
+// 		color:lighten(grey, 10%);
+// 	}
+// }
 .knowtHeader{
 	text-decoration: none;
-	color:#424242;
+	color:$monoDarker;
 	font-family: 'elephant';
 	font-size:2rem;
 	vertical-align: bottom;
 	text-decoration: none;
-	color:#424242;
+	color:$monoDarker;
+	margin-right:2rem;
 	&:hover, &:focus{
 		outline:none;
-		color: #898989;
+		color: $monoMid;
 	}
 	h1{
 	}
@@ -119,19 +126,6 @@ header{
 	justify-content: space-between;
 	margin:0 0 1rem 0;
 	align-items:center;
-	button{
-		height:2.5rem;
-		min-width:2.5rem;
-		border: 1px solid #424242;
-		border-radius: 4px;
-		outline:none;
-		background-color: #E9E9E9;
-		color: #424242;
-		&:hover{
-			border-color: lighten(grey, 10%);
-			color:lighten(grey, 10%);
-		}
-	}
 }
 #newNote{
 	position:absolute;
@@ -141,15 +135,15 @@ header{
 	display:flex;
 	flex-direction:column;
 	padding:1rem;
-	border:1px solid #424242;
+	border:1px solid $monoDarker;
 	border-radius:4px;
 	input{
 		outline:none;
-		color: #424242;
+		color: $monoDarker;
 		padding:0.5rem 1rem 1rem 1rem;
 		border:none;
 		font-size:2rem;
-		border-bottom:1px solid #c4c4c4;
+		border-bottom:1px solid$monoLighter;
 	}
 	textarea{
 		resize: none;
@@ -158,8 +152,9 @@ header{
 		padding:0 1rem;
 		border:none;
 		outline:none;
-		color:#898989;
+		color:$monoMid;
 		width:100%;
+		margin-bottom:-2rem;
 	}
 	input[type=submit]{
 		font-size:1.2rem;
@@ -168,7 +163,7 @@ header{
 	}
 }
 #noteItem{
-	border: 1px solid #424242;
+	border: 1px solid $monoDarker;
 	border-radius: 4px;
 	box-shadow: 0 8px 8px rgba(0,0,0,.1);
 	width:100%;
@@ -182,7 +177,7 @@ header{
 	align-items:left;
 	height:100%;
 	margin: -1rem 0 0 -1rem;
-	padding-right:1rem;
+	padding-right:1.5rem;
 	overflow-y:scroll;
 	align-content:flex-start;
 	h2{
@@ -198,6 +193,7 @@ header{
 	display:block;
 	flex-basis:25%;
 	min-width:25%;
+
 }
 .noteActions{
 	z-index:11;
@@ -212,11 +208,14 @@ header{
 	font-size:1rem;
 	font-weight:400;
 	border:none;
-	background:#E9E9E9;
+	background:$monoLightest;
 	padding:0.5rem;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	button{
+		height: 2.5rem;
+	    width: 2.5rem;
+	    border-radius: 4px;
 		margin-right:0.5rem;
 		font-size:1rem;
 		font-weight:400;
@@ -231,7 +230,7 @@ header{
 	display:flex;
 	flex-direction: column;
 	padding:1rem;
-	border:1px solid #424242;
+	border:1px solid $monoDarker;
 	border-radius:4px;
 	width: 100%;	
 	height:230px;
@@ -244,9 +243,9 @@ header{
 		flex-direction: column;
 	}
 	h3{
-		color: #424242;
+		color: $monoDarker;
 		padding:0.5rem;
-		border-bottom:1px solid #c4c4c4;
+		border-bottom:1px solid$monoLighter;
 		word-wrap: break-word;
 		min-height:2rem;
 		overflow-y:hidden;
@@ -276,13 +275,14 @@ header{
 	height:100%;
 	margin-bottom:1rem;
 	padding:1rem 0;
-	border-bottom:1px solid #c4c4c4;
-	.pOverlayWrite{
+	border-bottom:1px solid$monoLighter;
+
+}
+.pOverlayWrite{
+	height:100%;
+	background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.3),rgba(255,255,255,0));
+	textarea{
 		height:100%;
-		background: linear-gradient(rgba(255,255,255,1),rgba(255,255,255,0.3),rgba(255,255,255,0));
-		textarea{
-			height:100%;
-		}
 	}
 }
 .pOverlay{
@@ -316,22 +316,20 @@ header{
 	flex-basis:25%;
 	width:25%;
 	color:transparent;
-	
-	.addNoteCard--Item{
-		background:#e9e9e9;
-		.addNoteCard--Container{
-			height:100%;
-		}
-		.addNoteCard--inner{
-
-			display:flex;
-			height:100%;
-			i{
-				font-size:5rem;
-				color:#c4c4c4;
-				margin:auto auto;
-			}
-		}
+}
+.addNoteCard--Item{
+	background:$monoLightest;
+}
+.addNoteCard--Container{
+	height:100%;
+}
+.addNoteCard--inner{
+	display:flex;
+	height:100%;
+	i{
+		font-size:5rem;
+		color:#c4c4c4;
+		margin:auto auto;
 	}
 }
 *::-webkit-scrollbar-track
@@ -347,7 +345,7 @@ header{
 *::-webkit-scrollbar-thumb
 {
 	border-radius: 100px;
-	background-color: #c4c4c4;
+	background-color:$monoLighter;
 	width:1rem;
 }
 .actionRemoveNote:hover {
@@ -366,55 +364,102 @@ header{
 	display:flex;
 	flex-direction:row;
 	flex-wrap:wrap;
+	#loginNav button, li a, .loginButton, .user-form>input {
+		text-decoration: none;
+		color:$monoMid;
+		padding: 0.5rem 1rem;
+		border:1px solid $monoMid;
+		border-radius:4px;
+		margin: auto;
+		background:#fff;
+		margin-right:1rem;
+		&:hover{
+			outline:none;
+			color:$monoDarker;
+			border-color:$monoDarker;
+		}
+		&:focus{
+			outline:none;
+		}
+	}
 	.user-form{
+		border-left: 1px solid $monoMid;
+		padding-left:1rem;
+		input{
+			width:190px;
+		}
+		.loginButton{
+			background:$monoLightest;
+			color:$monoDarker;
+		}
 		label{
 			display:none;
 		}
-		input,.loginButton{
-			height:2.5rem;
-			margin:0.5rem 0.5rem 0 0;
-			padding: 0.5rem 1rem;
-			border:none;
-			background:#e9e9e9;
-			border-bottom: 1px solid #c4c4c4;
-			border-radius:4px;
-			&:focus{
-				outline: none;
-				border-bottom: 1px solid #898989;
-			}
-		}
-		.loginButton{
-			border: 1px solid #424242;
-			&:hover, &:focus{
-				background:#c4c4c4;
-				outline: none;
-				border: 1px solid #424242;
-				color: #424242;
-			}
-		}
+
 	}
 }
 /* Portrait tablet and small desktops */
-@media (max-width: 1360px) {
-	.noteGridItem--container{
+@media (max-width: 1200px) {
+	.AddNoteLink, .noteGridItem--container{
 		flex-basis:33%;
 		min-width:33%;
 	}
 }
 /* Portrait tablet and small desktops */
-@media (max-width: 1080px) {
-	.noteGridItem--container{
+@media (max-width: 960px) {
+
+}
+/* Landscape phone to portrait tablet */
+@media (max-width: 780px) {
+	#wrapper{
+		padding:2rem 0;
+	}
+	.AddNoteLink, .noteGridItem--container{
 		flex-basis:50%;
 		min-width:50%;
 	}
-}
-/* Landscape phone to portrait tablet */
-@media (max-width: 768px) {
-}
-/* Landscape phones and down */
-@media (max-width: 480px) {
-	.noteGridItem--container{
+
+	#mainBlock #loginNav {
+		width:100%;
+		button{
+			width:100%;
+			margin:1.5rem 0;
+		}
+	}
+
+	#loginNav{
+		order:3;
+	}
+	.AddNoteLink, .noteGridItem--container{
 		flex-basis:100%;
 		min-width:100%;
 	}
+	#loginContainer{
+		display:flex;
+		flex-direction:row;
+		flex-wrap:wrap;
+		li{
+			margin:1.5rem 0;
+		}
+		.user-form{
+			border:none;
+			border-bottom:1px solid $monoMid;
+			padding-left:0;
+			padding-bottom:1.5rem;
+			width:100%;
+			label{
+				display:none;
+			}
+			input,.loginButton{
+				margin:0.5rem 0.5rem 0 0;
+				padding: 0.5rem 1rem;
+				width:100%;
+			}
+		}
+	}
+}
+/* Landscape phones and down */
+@media (max-width: 580px) {
+
+
 }

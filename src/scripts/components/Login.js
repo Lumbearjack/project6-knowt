@@ -1,11 +1,11 @@
 import React from 'react';
-import { Router, Route, browserHistory, Link } from 'react-router';
+
 
 export default class Login extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			formToShow: 'signup',
+			formToShow: 'login',
 			showSignInUp: '',
 			email: '',
 			password: '',
@@ -37,6 +37,7 @@ export default class Login extends React.Component {
 			firebase.auth()
 				.createUserWithEmailAndPassword(this.state.email, this.state.password)
 				.then((userData) => {
+
 					console.log('user');
 					alert(userData);
 					// if(userData.code ===){}
@@ -52,6 +53,7 @@ export default class Login extends React.Component {
 		firebase.auth()
 		.signInWithEmailAndPassword(this.state.email, this.state.password)
 		.then((userData) => {
+			// this.props.loginState = true;
 		}).catch((err) => {
 			alert(err.message);
 		});
@@ -67,18 +69,28 @@ export default class Login extends React.Component {
 		let user = firebase.auth().currentUser;
 		if (user){
 			loginOptions = (
-				<form onSubmit={this.logout} className="user-form">
-					{/* display username */}
-					<button>Log Out</button>
-				</form>
+				<nav id="loginNav">
+					<button className="logout" onClick={this.logout}>Log Out</button>
+				</nav>
 			);
-		}else{
+		}else if(this.state.formToShow === 'signup') {
 			loginOptions = (
 				<nav id="loginNav">
-					<ul>
-						<li><a href="" className="signup" onClick={this.formToShow}>Sign Up</a></li>
-						<li><a href="" className="login" onClick={this.formToShow}>Log In</a></li>
-					</ul>
+					<button className="login" onClick={this.formToShow}>Log In</button>
+				</nav>
+			);
+		}else if(this.state.formToShow === 'login') {
+			loginOptions = (
+				<nav id="loginNav">
+					<button className="signup" onClick={this.formToShow}>Sign Up</button>
+				</nav>
+			);
+		}
+		else{
+			loginOptions = (
+				<nav id="loginNav">
+					<button className="signup" onClick={this.formToShow}>Sign Up</button>
+					<button className="login" onClick={this.formToShow}>Log In</button>
 				</nav>
 			);
 		}
@@ -91,11 +103,11 @@ export default class Login extends React.Component {
 				loginForm = (
 					<form onSubmit={this.signup} className="user-form">
 						<label htmlFor="email">Email: </label>
-						<input type="email" name="email" onChange={this.handleChange} required />
+						<input type="email" name="email" placeholder="email@domain.com" onChange={this.handleChange} required autoFocus/>
 						<label htmlFor="password">Password: </label>
-						<input type="password" name="password" onChange={this.handleChange} required />
+						<input type="password" name="password" placeholder="password"onChange={this.handleChange} required />
 						<label htmlFor="confirm">Confirm Password:</label>
-						<input type="password" name="confirm" onChange={this.handleChange} required />
+						<input type="password" name="confirm" placeholder="confirm password"onChange={this.handleChange} required />
 						<button className="loginButton">Sign Up</button>
 					</form>
 				);
@@ -104,9 +116,9 @@ export default class Login extends React.Component {
 				loginForm = (
 					<form onSubmit={this.login} className="user-form">
 						<label htmlFor="email">Email: </label>
-						<input type="email" name="email" onChange={this.handleChange}/>
+						<input type="email" name="email" placeholder="example@email.com"onChange={this.handleChange} autoFocus/>
 						<label htmlFor="password">Password: </label>
-						<input type="password" name="password" onChange={this.handleChange}/>
+						<input type="password" name="password" placeholder="password" onChange={this.handleChange}/>
 						<button className="loginButton">Log In</button>
 					</form>
 				);

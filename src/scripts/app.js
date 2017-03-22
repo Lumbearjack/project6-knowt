@@ -85,15 +85,21 @@ class App extends React.Component {
 		this.props.router.push(`/${editKey}`);
 	}
 	render(){
+		let content = "";
+		if(this.state.loggedin){
+			content = (
+				this.props.children || <NoteGrid loginState={this.state.loggedin} notes={this.state.notes} removeNote={this.removeNote} editNote={this.editNote}/>
+			)
+		}
 		return (
-			<div id="wrapper">
+			<div id="wrapper" className="themeLight">
 				<main id="mainBlock">
 				<header>
 					<Link to={"/"} className="knowtHeader"> <h1 >knowt</h1> </Link>
 					<Login loginState={this.state.loggedin}/>
 				</header>
 				<section>
-					{this.props.children || <NoteGrid notes={this.state.notes} removeNote={this.removeNote} editNote={this.editNote}/>}
+					{content}
 				</section>
 				</main>
 				{/*<aside id="sideBlock">
