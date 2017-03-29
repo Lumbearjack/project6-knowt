@@ -39,7 +39,7 @@ export default class Login extends React.Component {
 				.then((userData) => {
 
 					console.log('user');
-					alert(userData);
+					// alert(userData);
 					// if(userData.code ===){}
 				}).catch((err) => {
 					alert(err.message);

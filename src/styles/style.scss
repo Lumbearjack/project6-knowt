@@ -6,7 +6,7 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 @font-face{
 	font-family: "elephant", serif;
-	src: url('/assets/elephant.ttf');
+	src: url('../../assets/elephant.ttf');
 }
 
 /* Edit/ Add notes only messes up when window width is not forcing width change on textarea*/
@@ -16,13 +16,6 @@ input[type=reset],input[type=submit]{-webkit-appearance:button;cursor:pointer;}b
 	$monoMid: #898989;
 	$monoLighter: #C4C4C4;
 	$monoLightest: #E9E9E9;
-.themeLight{
-
-}
-
-.themeDark{
-
-}
 
 $spaceMed: 1.5rem;
 h1,h2,h3,h4,h5,h6{
@@ -103,11 +96,13 @@ a, button{
 	text-decoration: none;
 	color:$monoDarker;
 	margin-right:2rem;
-	&:hover, &:focus{
+	&:hover{
 		outline:none;
 		color: $monoMid;
 	}
-	h1{
+	&:focus{
+		outline:none;
+		color:$monoDarker;
 	}
 }
 header{
