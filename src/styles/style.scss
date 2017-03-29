@@ -407,10 +407,7 @@ header{
 	#loginNav{
 		order:3;
 	}
-	.AddNoteLink, .noteGridItem--container{
-		flex-basis:100%;
-		min-width:100%;
-	}
+
 	#loginContainer{
 		display:flex;
 		flex-direction:row;
@@ -437,6 +434,9 @@ header{
 }
 /* Landscape phones and down */
 @media (max-width: 580px) {
-
+	.AddNoteLink, .noteGridItem--container{
+		flex-basis:100%;
+		min-width:100%;
+	}
 
 }

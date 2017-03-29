@@ -33,8 +33,9 @@ class App extends React.Component {
 		this.handleChange = this.handleChange.bind(this);
 		this.editNote = this.editNote.bind(this);
 		this.removeNote = this.removeNote.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 	}
+
+
 	componentDidMount() {
 		firebase.auth().onAuthStateChanged((user) => {
 			if (user){
@@ -66,9 +67,9 @@ class App extends React.Component {
 			[e.target.name]: e.target.value
 		});
 	}
-	removeNote(itemToRemove){
+	removeNote(itemToRemove) {
 		const userId = firebase.auth().currentUser.uid;
-		const dbRef = firebase.database().ref(`users/${userId}/notes/${itemToRemove.key}`)
+		const dbRef = firebase.database().ref(`users/${userId}/notes/${itemToRemove.key}`);
 		dbRef.remove();
 		this.props.router.push(`/`);
 	}
